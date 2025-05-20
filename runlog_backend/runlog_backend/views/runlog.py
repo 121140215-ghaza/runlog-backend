@@ -38,7 +38,9 @@ def create_runlog(request):
     if not request.content_type.startswith('application/json'):
         return {'error': 'Content-Type harus application/json'}
 
-    user = get_user_from_request(request)
+    user = request.user
+    if not user:
+        raise HTTPForbidden("Token tidak valid")
     data = request.json_body
 
     runlog = RunLog(
@@ -55,7 +57,9 @@ def create_runlog(request):
 
 @view_config(route_name='get_runlogs', request_method='GET', renderer='json')
 def get_runlogs(request):
-    user = get_user_from_request(request)
+    user = request.user
+    if not user:
+        raise HTTPForbidden("Token tidak valid")
     logs = request.dbsession.query(RunLog).filter_by(user_id=user.id).all()
 
     return [
@@ -72,7 +76,9 @@ def get_runlogs(request):
 # Update log lari
 @view_config(route_name='update_runlog', request_method='PUT', renderer='json')
 def update_runlog(request):
-    user = get_user_from_request(request)
+    user = request.user
+    if not user:
+        raise HTTPForbidden("Token tidak valid")
     runlog_id = int(request.matchdict['id'])
     data = request.json_body
 
@@ -90,7 +96,9 @@ def update_runlog(request):
 # Hapus log lari
 @view_config(route_name='delete_runlog', request_method='DELETE', renderer='json')
 def delete_runlog(request):
-    user = get_user_from_request(request)
+    user = request.user
+    if not user:
+        raise HTTPForbidden("Token tidak valid")
     runlog_id = int(request.matchdict['id'])
 
     log = DBSession.query(RunLog).filter_by(id=runlog_id, user_id=user.id).first()

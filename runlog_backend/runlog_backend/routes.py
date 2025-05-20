@@ -7,3 +7,8 @@ def includeme(config):
     config.add_route('get_runlogs', '/api/cek/runlogs')
     config.add_route('update_runlog', '/api/update/runlogs/{id}')
     config.add_route('delete_runlog', '/api/delete/runlogs/{id}')
+    config.add_route('create_goal', '/api/create/goals')
+    config.add_route('get_goals', '/api/goals')
+    config.add_route('update_goal', '/api/update/goals/{id}')
+    config.add_route('delete_goal', '/api/delete/goals/{id}')
+    config.add_route('get_stats', '/api/stats')
