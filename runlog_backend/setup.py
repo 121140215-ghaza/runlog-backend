@@ -9,7 +9,6 @@ with open(os.path.join(here, 'README.txt'), encoding='utf-8') as f:
 with open(os.path.join(here, 'CHANGES.txt'), encoding='utf-8') as f:
     CHANGES = f.read()
 
-# Main dependencies
 requires = [
     'plaster_pastedeploy',
     'pyramid',
@@ -24,7 +23,6 @@ requires = [
     'zope.sqlalchemy',
 ]
 
-# Testing-only dependencies
 tests_require = [
     'WebTest',
     'pytest',
@@ -40,14 +38,15 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.9',  # Tambahkan versi Python targetmu secara spesifik
         'Framework :: Pyramid',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
         'License :: OSI Approved :: MIT License',
     ],
-    author='Your Name',
-    author_email='your@email.com',
-    url='https://github.com/yourusername/runlog-backend',
+    author='Your Name',  # Ganti dengan nama asli kamu
+    author_email='your@email.com',  # Ganti dengan email kamu
+    url='https://github.com/yourusername/runlog-backend',  # Update URL repositori kamu
     keywords='web pyramid REST API running tracker',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
