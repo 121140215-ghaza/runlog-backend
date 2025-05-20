@@ -1,0 +1,7 @@
+pyramid
+waitress
+sqlalchemy
+alembic
+psycopg2-binary
+passlib
+jwt
