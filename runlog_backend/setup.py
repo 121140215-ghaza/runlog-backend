@@ -1,13 +1,15 @@
 import os
-
 from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(here, 'README.txt')) as f:
+
+# Read long descriptions
+with open(os.path.join(here, 'README.txt'), encoding='utf-8') as f:
     README = f.read()
-with open(os.path.join(here, 'CHANGES.txt')) as f:
+with open(os.path.join(here, 'CHANGES.txt'), encoding='utf-8') as f:
     CHANGES = f.read()
 
+# Main dependencies
 requires = [
     'plaster_pastedeploy',
     'pyramid',
@@ -22,6 +24,7 @@ requires = [
     'zope.sqlalchemy',
 ]
 
+# Testing-only dependencies
 tests_require = [
     'WebTest',
     'pytest',
@@ -30,22 +33,26 @@ tests_require = [
 
 setup(
     name='runlog_backend',
-    version='0.0',
-    description='RUNLOG',
+    version='0.1.0',
+    description='RUNLOG - Personal Running Log Tracker API',
     long_description=README + '\n\n' + CHANGES,
+    long_description_content_type='text/plain',
     classifiers=[
-        'Programming Language :: Python',
+        'Development Status :: 4 - Beta',
+        'Programming Language :: Python :: 3',
         'Framework :: Pyramid',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
+        'License :: OSI Approved :: MIT License',
     ],
-    author='',
-    author_email='',
-    url='',
-    keywords='web pyramid pylons',
+    author='Your Name',
+    author_email='your@email.com',
+    url='https://github.com/yourusername/runlog-backend',
+    keywords='web pyramid REST API running tracker',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     zip_safe=False,
+    python_requires='>=3.7',
     extras_require={
         'testing': tests_require,
     },
