@@ -8,5 +8,7 @@ RUN pip install -r requirements.txt
 
 ENV PORT=8000
 EXPOSE $PORT
+ 
 
-CMD ["pserve", "production.ini", "--server-name=main"]
+COPY production.ini .
+CMD ["pserve", "production.ini", "--server-name", "main"]
