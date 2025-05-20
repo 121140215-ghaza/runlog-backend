@@ -4,5 +4,4 @@ sqlalchemy
 alembic
 psycopg2-binary
 passlib
-jwt
--e .
+jwt 
