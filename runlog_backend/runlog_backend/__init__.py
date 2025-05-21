@@ -4,6 +4,7 @@ from runlog_backend.auth_policy import JWTAuthenticationPolicy, get_user
 from pyramid.tweens import MAIN
 
 
+
 def main(global_config, **settings):
     with Configurator(settings=settings) as config:
         config.include('pyramid_jinja2')

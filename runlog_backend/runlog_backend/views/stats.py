@@ -30,24 +30,22 @@ def get_stats(request):
     if not user:
         raise HTTPForbidden("Token tidak valid")
 
-    # Group by month (YYYY-MM)
-    results = (
-        DBSession.query(
-            func.to_char(RunLog.date, 'YYYY-MM').label('month'),
-            func.sum(RunLog.distance).label('total_distance'),
-            func.sum(RunLog.duration).label('total_duration')
-        )
-        .filter(RunLog.user_id == user.id)
-        .group_by(func.to_char(RunLog.date, 'YYYY-MM'))
-        .order_by('month')
-        .all()
-    )
-
-    return [
-        {
-            'month': row.month,
-            'total_distance': float(row.total_distance),
-            'total_duration': int(row.total_duration)
+    runs = DBSession.query(RunLog).filter_by(user_id=user.id).all()
+    if not runs:
+        return {
+            'total_distance': 0,
+            'total_duration': 0,
+            'avg_distance': 0,
+            'avg_duration': 0
         }
-        for row in results
-    ]
+
+    total_distance = sum(run.distance for run in runs)
+    total_duration = sum(run.duration for run in runs)
+    count = len(runs)
+
+    return {
+        'total_distance': round(total_distance, 2),
+        'total_duration': int(total_duration),
+        'avg_distance': round(total_distance / count, 2),
+        'avg_duration': round(total_duration / count, 2)
+    }
