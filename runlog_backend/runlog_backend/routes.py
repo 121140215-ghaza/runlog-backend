@@ -12,3 +12,5 @@ def includeme(config):
     config.add_route('update_goal', '/api/update/goals/{id}')
     config.add_route('delete_goal', '/api/delete/goals/{id}')
     config.add_route('get_stats', '/api/stats')
+    config.add_route('export_runlogs', '/api/runlogs/export')
+
